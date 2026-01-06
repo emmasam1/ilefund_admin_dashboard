@@ -145,7 +145,7 @@ const Estates = () => {
   };
 
   const STATUS_MAP = {
-    "All Orders": null,
+    "All Estate": null,
     Active: "active",
     Acquisition: "acquisition",
     "In-Processing": "in-processing",
