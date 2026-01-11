@@ -56,30 +56,30 @@ const items = [
     "/dashboard",
     <img src={dashboard} alt="" className="w-3" />
   ),
-  getItem("Task Manager", "/task-manager", <img src={task} alt="" className="w-5" />),
+  // getItem("Task Manager", "/task-manager", <img src={task} alt="" className="w-5" />),
   getItem(
     "Employees",
     "/employees",
     <img src={employees} alt="" className="w-5" />
   ),
-  getItem(
-    "Estates",
-    "/estates",
-    <img src={estates} alt="" className="w-5" />
-  ),
-  getItem(
-    "Payment",
-    "/notification",
-    <img src={payment} alt="" className="w-5" />
-  ),
+  getItem("Estates", "/estates", <img src={estates} alt="" className="w-5" />),
+  getItem("Payment", "/payment", <img src={payment} alt="" className="w-5" />),
   getItem(
     "Subscribe",
     "/subscribers",
     <img src={invoice} alt="" className="w-5" />
   ),
   getItem("Leads", "/leads", <img src={leads} alt="" className="w-5" />),
-  getItem("Invoices", "/invoices", <img src={invoice} alt="" className="w-5" />),
-  getItem("Configuration", "/configuration", <img src={invoice} alt="" className="w-5" />),
+  getItem(
+    "Invoices",
+    "/invoices",
+    <img src={invoice} alt="" className="w-5" />
+  ),
+  getItem(
+    "Configuration",
+    "/configuration",
+    <img src={invoice} alt="" className="w-5" />
+  ),
 ];
 
 const DashboardLayout = () => {
@@ -87,7 +87,7 @@ const DashboardLayout = () => {
   const { loggedInUser, logout } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
-    const { state } = useLocation();
+  const { state } = useLocation();
   const estate = state?.estate;
 
   // console.log(estate)
@@ -103,9 +103,9 @@ const DashboardLayout = () => {
     case "/dashboard":
       title = "Over View";
       break;
-    case "/task-manager":
-      title = "Task Manager";
-      break;
+    // case "/task-manager":
+    //   title = "Task Manager";
+    //   break;
     case "/employees":
       title = "Employees";
       break;
@@ -134,34 +134,32 @@ const DashboardLayout = () => {
       title = "";
   }
 
-const dropdownItems = [
-  {
-    label: (
-      <a target="_blank" rel="noopener noreferrer">
-        Personal Info
-      </a>
-    ),
-    key: "0",
-  },
-  {
-    label: (
-      <a target="_blank" rel="noopener noreferrer">
-        System Settings
-      </a>
-    ),
-    key: "1",
-  },
-  {
-    label: (
-      <a target="_blank" rel="noopener noreferrer" className="!text-red-500">
-        Log Out
-      </a>
-    ),
-    key: "2",
-  },
-  
-];
-
+  const dropdownItems = [
+    {
+      label: (
+        <a target="_blank" rel="noopener noreferrer">
+          Personal Info
+        </a>
+      ),
+      key: "0",
+    },
+    {
+      label: (
+        <a target="_blank" rel="noopener noreferrer">
+          System Settings
+        </a>
+      ),
+      key: "1",
+    },
+    {
+      label: (
+        <a target="_blank" rel="noopener noreferrer" className="!text-red-500">
+          Log Out
+        </a>
+      ),
+      key: "2",
+    },
+  ];
 
   const handleMenuClick = (e) => {
     navigate(e.key);
@@ -212,7 +210,7 @@ const dropdownItems = [
         <Menu
           theme="light"
           // selectedKeys={[location.pathname]}
-          selectedKeys={[activeMenuKey]} 
+          selectedKeys={[activeMenuKey]}
           mode="inline"
           items={items}
           className="custom-menu"
@@ -247,32 +245,22 @@ const dropdownItems = [
           <div className="flex justify-between items-center">
             <div>
               <h2 className="font-bold text-xl text-[#000068]">{title}</h2>
-              {title && (
-                <p className="text-[.8rem]">
-                  {title === "Users"
-                    ? "Manage your users"
-                    : title === "Credit Packages"
-                    ? "Manage credit packages"
-                    : title === "User Profile"
-                    ? "Manage user profile"
-                    : title === "Payments"
-                    ? "Manage and monitor payments"
-                    : title === "leadss"
-                    ? "Manage and reply to leadss"
-                    : title === "Cutlist"
-                    ? "Manage users cutlist"
-                    : formattedDate}
-                </p>
-              )}
+              {formattedDate}
             </div>
             <div className="flex items-center gap-3">
               <div className="bg-red-500 rounded-full h-11 w-11">hh</div>
-              <Dropdown menu={{ items: dropdownItems }} trigger={["click"]} className="hover:!text-black">
+              <Dropdown
+                menu={{ items: dropdownItems }}
+                trigger={["click"]}
+                className="hover:!text-black"
+              >
                 <a onClick={(e) => e.preventDefault()}>
                   <Space>
                     <div>
                       <div>
-                        <h2 className="font-bold text-lg">{loggedInUser?.firstName} {loggedInUser?.lastName}</h2>
+                        <h2 className="font-bold text-lg">
+                          {loggedInUser?.firstName} {loggedInUser?.lastName}
+                        </h2>
                         <p className="!text-gray-400">{loggedInUser?.email}</p>
                       </div>
                     </div>
