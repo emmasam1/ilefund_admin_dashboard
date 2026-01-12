@@ -33,7 +33,7 @@ export const ContextProvider = ({ children }) => {
       const encryptedToken = sessionStorage.getItem("accessToken");
 
       if (!encryptedUser || !encryptedToken) {
-        navigate("/admin-login");
+        navigate("/");
         return;
       }
 
@@ -49,7 +49,7 @@ export const ContextProvider = ({ children }) => {
       setUserBlockedStatus(user.blockedStatus || "active");
     } catch (error) {
       sessionStorage.clear();
-      navigate("/admin-login");
+      navigate("/");
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +72,7 @@ export const ContextProvider = ({ children }) => {
     setUserBlockedStatus("active");
 
     sessionStorage.clear();
-    navigate("/admin-login");
+    navigate("/");
   };
 
   // 🔹 LOADER
